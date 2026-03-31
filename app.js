@@ -1,6 +1,15 @@
 const STORAGE_KEY = "pacientes";
 
 /* ===============================
+   UTIL
+================================ */
+function formatarDataBR(dataISO) {
+  if (!dataISO) return "";
+  const partes = dataISO.split("-");
+  return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+/* ===============================
    SALVAR PACIENTE
 ================================ */
 function salvarPaciente(paciente) {
@@ -47,7 +56,7 @@ function adicionarLinha(paciente, index) {
 
   tr.innerHTML = `
     <td>${paciente.nome}</td>
-    <td>${paciente.data}</td>
+    <td>${formatarDataBR(paciente.data)}</td>
     ${checkboxes}
   `;
 
@@ -84,7 +93,7 @@ document
 
     salvarPaciente({
       nome,
-      data,
+      data, // continua salvando em ISO (melhor prática)
       checklist,
     });
 
@@ -92,6 +101,9 @@ document
     this.reset();
   });
 
+/* ===============================
+   EXPORTAÇÃO
+================================ */
 document.getElementById("btnExportar").addEventListener("click", function () {
   const pacientes = JSON.parse(localStorage.getItem("pacientes")) || [];
 
@@ -103,7 +115,7 @@ document.getElementById("btnExportar").addEventListener("click", function () {
   const dados = pacientes.map((p) => {
     const linha = {
       Nome: p.nome,
-      "Data Internação": p.data,
+      "Data Internação": formatarDataBR(p.data), // 🔥 conversão aqui
     };
 
     for (let i = 1; i <= 31; i++) {
