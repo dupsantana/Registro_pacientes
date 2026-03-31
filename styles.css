@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  background: #f5f5f7;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #5e3ea1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.formulario {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end; /* 🔹 alinha tudo na base */
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+label{
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #491449;
+}
+
+/* 🔹 Container dos botões */
+.form-acoes {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; /* joga tudo pra direita */
+}
+
+/* botão padrão */
+.btn {
+  background: #7447c6;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* botão exportar */
+.btn-exportar {
+  background: #7447c6;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn-exportar img {
+  width: 20px;
+}
+
+/* 🔥 Tooltip (hover) */
+.btn-exportar::after {
+  content: "Baixar planilha";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.btn-exportar:hover::after {
+  opacity: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #eee;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
+}
+
+th {
+  background: #ece6f7;
+}
+
+tr:nth-child(even) {
+  background: #faf9ff;
+}
