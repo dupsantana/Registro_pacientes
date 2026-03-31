@@ -12,7 +12,7 @@
     <header class="header">
       <h1>Controle de Pacientes</h1>
     </header>
-    
+
     <main class="container">
       <!-- FORM -->
       <form id="formPaciente" class="formulario">
@@ -28,6 +28,10 @@
 
         <!-- 🔥 BOTÕES AQUI DENTRO -->
         <div class="form-acoes">
+          <button type="button" id="btnLimparTudo" class="btn-exportar">
+            <img src="./lixeira.png" alt="Limpar tudo" />
+          </button>
+
           <button type="button" id="btnExportar" class="btn-exportar">
             <img src="./download.png" alt="Exportar" />
           </button>
@@ -40,9 +44,10 @@
       <table id="tabelaPacientes">
         <thead>
           <tr>
+            <th></th>
             <th>Nome</th>
             <th>Internação</th>
-
+            
             <th>01</th>
             <th>02</th>
             <th>03</th>

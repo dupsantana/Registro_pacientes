@@ -33,6 +33,19 @@ function carregarPacientes() {
 }
 
 /* ===============================
+   REMOVER INDIVIDUAL
+================================ */
+function removerPaciente(index) {
+  const pacientes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+  pacientes.splice(index, 1);
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(pacientes));
+
+  carregarPacientes();
+}
+
+/* ===============================
    ADICIONAR LINHA
 ================================ */
 function adicionarLinha(paciente, index) {
@@ -55,6 +68,7 @@ function adicionarLinha(paciente, index) {
   }
 
   tr.innerHTML = `
+    <td><span class="btn-remover" onclick="removerPaciente(${index})">x</span></td>
     <td>${paciente.nome}</td>
     <td>${formatarDataBR(paciente.data)}</td>
     ${checkboxes}
@@ -93,7 +107,7 @@ document
 
     salvarPaciente({
       nome,
-      data, // continua salvando em ISO (melhor prática)
+      data,
       checklist,
     });
 
@@ -102,10 +116,27 @@ document
   });
 
 /* ===============================
+   LIMPAR TUDO
+================================ */
+document
+  .getElementById("btnLimparTudo")
+  .addEventListener("click", function () {
+    const confirmar = confirm(
+      "Você tem certeza que quer excluir todos os registros?"
+    );
+
+    if (!confirmar) return;
+
+    localStorage.removeItem(STORAGE_KEY);
+
+    carregarPacientes();
+  });
+
+/* ===============================
    EXPORTAÇÃO
 ================================ */
 document.getElementById("btnExportar").addEventListener("click", function () {
-  const pacientes = JSON.parse(localStorage.getItem("pacientes")) || [];
+  const pacientes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
   if (pacientes.length === 0) {
     alert("Não há dados para exportar.");
@@ -115,7 +146,7 @@ document.getElementById("btnExportar").addEventListener("click", function () {
   const dados = pacientes.map((p) => {
     const linha = {
       Nome: p.nome,
-      "Data Internação": formatarDataBR(p.data), // 🔥 conversão aqui
+      "Data Internação": formatarDataBR(p.data),
     };
 
     for (let i = 1; i <= 31; i++) {
@@ -127,10 +158,9 @@ document.getElementById("btnExportar").addEventListener("click", function () {
 
   const ws = XLSX.utils.json_to_sheet(dados);
 
-  // 📄 Configuração de página
   ws["!pageSetup"] = {
     orientation: "landscape",
-    paperSize: 9, // A4
+    paperSize: 9,
   };
 
   const wb = XLSX.utils.book_new();

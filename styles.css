@@ -128,3 +128,39 @@ th {
 tr:nth-child(even) {
   background: #faf9ff;
 }
+
+
+
+/* botão remover linha */
+.btn-remover {
+  color: #7447c6;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-remover:hover {
+  color: red;
+}
+
+/* tooltip limpar */
+#btnLimparTudo::after {
+  content: "Limpar tudo";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+#btnLimparTudo:hover::after {
+  opacity: 1;
+}
