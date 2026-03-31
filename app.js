@@ -68,28 +68,29 @@ function toggleCheck(index, dia) {
 /* ===============================
    FORM
 ================================ */
-document.getElementById("formPaciente")
-.addEventListener("submit", function(e) {
-  e.preventDefault();
+document
+  .getElementById("formPaciente")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const nome = document.getElementById("nome").value;
-  const data = document.getElementById("dataInternacao").value;
+    const nome = document.getElementById("nome").value;
+    const data = document.getElementById("dataInternacao").value;
 
-  const checklist = {};
+    const checklist = {};
 
-  for (let i = 1; i <= 31; i++) {
-    checklist[i] = false;
-  }
+    for (let i = 1; i <= 31; i++) {
+      checklist[i] = false;
+    }
 
-  salvarPaciente({
-    nome,
-    data,
-    checklist
+    salvarPaciente({
+      nome,
+      data,
+      checklist,
+    });
+
+    carregarPacientes();
+    this.reset();
   });
-
-  carregarPacientes();
-  this.reset();
-});
 
 document.getElementById("btnExportar").addEventListener("click", function () {
   const pacientes = JSON.parse(localStorage.getItem("pacientes")) || [];
@@ -117,7 +118,7 @@ document.getElementById("btnExportar").addEventListener("click", function () {
   // 📄 Configuração de página
   ws["!pageSetup"] = {
     orientation: "landscape",
-    paperSize: 9 // A4
+    paperSize: 9, // A4
   };
 
   const wb = XLSX.utils.book_new();

@@ -38,10 +38,9 @@ body {
 .campo {
   display: flex;
   flex-direction: column;
-  
 }
 
-label{
+label {
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -114,7 +113,8 @@ table {
   overflow: hidden;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #eee;
   padding: 5px;
   text-align: center;
