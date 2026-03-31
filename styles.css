@@ -83,8 +83,8 @@ input {
   width: 20px;
 }
 
-/* 🔥 Tooltip (hover) */
-.btn-exportar::after {
+/* download */
+#btnExportar::after {
   content: "Baixar planilha";
   position: absolute;
   bottom: 120%;
@@ -95,13 +95,31 @@ input {
   font-size: 11px;
   padding: 4px 6px;
   border-radius: 4px;
-  white-space: nowrap;
   opacity: 0;
-  pointer-events: none;
   transition: 0.2s;
 }
 
-.btn-exportar:hover::after {
+#btnExportar:hover::after {
+  opacity: 1;
+}
+
+/* lixeira */
+#btnLimparTudo::after {
+  content: "Limpar tudo";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#btnLimparTudo:hover::after {
   opacity: 1;
 }
 
